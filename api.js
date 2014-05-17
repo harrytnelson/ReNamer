@@ -7,7 +7,7 @@ var http = require("http"),
     X = require("xregexp").XRegExp;
 
 
-var files = function(config,debug){
+var files = function(config,CB,debug){
   function replace(num,show,pat,replacement){
     var ret = X.replace(show,pat,replacement);
     debug && console.log(sprintf("%2d",num)+" show: '"+show+"'");
@@ -87,24 +87,26 @@ var files = function(config,debug){
                 "extension":ext});
 
   }
-  return files;
+  CB( files );
 }
 
-var getTitle = function(config,show,season,episode){
+var getTitle = function(config,queryString,CB){
 
-return {"title":"Episode Title"};
+ CB({"title":"Episode Title"});
 
 }
 
-var move = function(config,from,to){return true;}
-var erase = function(config,file){return true;}
-var dups = function(config){return [[{"file":"file 1.mkv","size":"1234"},
+var move = function(config,queryString,CB){CB(true);}
+var erase = function(config,queryString,CB){CB(true);}
+var dups = function(config,CB){CB( [[{"file":"file 1.mkv","size":"1234"},
                                      {"file":"file 1.mpg","size":"1234"}],
                                     [{"file":"file 2.avi","size":"1234"},
-                                     {"file":"file 3.mp4","size":"1234"}]];}
+                                     {"file":"file 3.mp4","size":"1234"}]]);}
 
 module.exports = {
   files: files,
   getTitle: getTitle,
-  move: move};
+  move: move,
+  erase: erase,
+  dups: dups};
 

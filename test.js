@@ -5,14 +5,14 @@ var X = require("xregexp").XRegExp,
     api = require("./api");
 
 console.log("Testing api.js");
-var files = api.files(config,true);
-console.log("files " + util.inspect(files,false,null));
+console.log("  -  files");
+api.files(config,function(files){
+  console.log("files " + util.inspect(files,false,null));
 
-var A=['a','b','c'];
-var i=0;
-while( A.length )
-{
-  var a = A.pop();
-  console.log(i++ + " " + a);
-  if('a'==a) A.push('d');
-}
+  console.log("  -  getTitle");
+
+  api.getTitle(config,"?show=revolution&season=1&episode=1",function(title){
+    console.log("title " + title.title);
+  });
+},true);
+
