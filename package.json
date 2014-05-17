@@ -7,12 +7,24 @@
     "config": "~0.4.35",
     "querystring": "~0.2.0",
     "xregexp": "~2.0.0",
-    "sprintf-js": "~0.0.7"
+    "sprintf-js": "~0.0.7",
+    "request": "~2.34.0"
   },
   "devDependencies": {},
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "./test.js"
   },
   "author": "Harry Nelson",
-  "license": "ISC"
+  "license": "ISC",
+  "directories": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/harrytnelson/ReNamer.git"
+  },
+  "bugs": {
+    "url": "https://github.com/harrytnelson/ReNamer/issues"
+  },
+  "homepage": "https://github.com/harrytnelson/ReNamer"
 }

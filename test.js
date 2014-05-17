@@ -11,8 +11,8 @@ api.files(config,function(files){
 
   console.log("  -  getTitle");
 
-  api.getTitle(config,"?show=revolution&season=1&episode=1",function(title){
-    console.log("title " + title.title);
-  });
+  api.getTitle(config,{"show":"revolution","season":"1","episode":"1"},function(title){
+    console.log("title: " + title.title);
+  },true);
 },true);
 

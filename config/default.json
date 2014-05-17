@@ -1,8 +1,8 @@
 {
-  //"incoming":"/Users/harry/ReNamerTest/incoming",
-  "incoming":"/Volumes/Drobo/Public/Incoming",
+  "incoming":"sample/incoming",
+  //"incoming":"/Volumes/Drobo/Public/Incoming",
   "port":"9999",
-  //"output":"/Users/harry/ReNamerTest/tv",
-  "output":"/Volumes/Drobo/Public/TV",
+  "output":"sample/tv",
+  //"output":"/Volumes/Drobo/Public/TV",
   "epguides":"http://epguides.com"
 }
