@@ -6,11 +6,13 @@ var http = require("http"),
     config = require("config"),
     util = require("util"),
     api = require("./api"),
+    auth = require("http-auth"),
     port = process.argv[2] || (config.port !== undefined ? config.port : 8000);
 
 var debug = process.argv[3] == "-d";
 
-http.createServer(function(request, response) {
+
+var server = function(request, response) {
 
   var url = URL.parse(request.url,true),
       filename = path.join(process.cwd(), url.pathname);
@@ -84,6 +86,7 @@ http.createServer(function(request, response) {
   }
   else
   { 
+    // TODO no dot files
     fs.exists(filename, function(exists) {
       if(!exists) {
         response.writeHead(404, {"Content-Type": "text/plain"});
@@ -111,8 +114,17 @@ http.createServer(function(request, response) {
       });
     });
   }
-}).listen(parseInt(port, 10));
+}
 
+if(fs.exists(__dirname + "/.htpasswd"))
+{
+  var basic = auth.basic({
+      file: __dirname + "/.htpasswd"
+  });
+
+  http.createServer(basic,server).listen(parseInt(port, 10));
+} else
+  http.createServer(server).listen(parseInt(port, 10));
 //console.log("argv " + util.inspect(process.argv,false,null));
 //console.log("config " + JSON.stringify(config));
 console.log("ReNamer running at\n  => http://localhost:" + port + "/\nCTRL + C to shutdown");
