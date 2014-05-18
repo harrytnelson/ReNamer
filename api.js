@@ -63,11 +63,14 @@ function files(config,CB,debug){
 
   while (dir.length) {
     var file = dir.pop();
-    if(fs.statSync(path.join(incoming,file)).isDirectory()){
+    var stat = fs.statSync(path.join(incoming,file));
+    var fileObj = {"file":file,"date":stat.mtime};
+    if(stat.isDirectory()){
       var indir = fs.readdirSync(path.join(incoming,file));
       while (indir.length)
         dir.push(path.join(file,indir.pop()));
-      files.push({"name":file,"type":"dir"});
+      fileObj.type = "dir";
+      files.push(fileObj);
       continue;
     }
     debug && console.log("00 file: '" + file + "'");
@@ -84,7 +87,9 @@ function files(config,CB,debug){
       case '.divx':
         break;
       default:
-        files.push({"name":file,"type":"unknown"});
+
+        fileObj.type = "unknown";
+        files.push(fileObj);
         continue;
     }
     var i=1;
@@ -121,12 +126,12 @@ function files(config,CB,debug){
     var episode = replace(debug,99,show,X("^.* - S[0-9]{2}E([0-9]{2})$",''),'$1');
     show = replace(debug,99,show,X("^(.*) - S[0-9]{2}E[0-9]{2}$",''),'$1');
 
-    files.push({"name":file,
-                "type":"video",
-                "show":show,
-                "season":season,
-                "episode":episode,
-                "extension":ext});
+    fileObj.type="video";
+    fileObj.show=show;
+    fileObj.season=season;
+    fileObj.episode=episode;
+    fileObj.extension=ext;
+    files.push(fileObj);
 
   }
   CB( files );

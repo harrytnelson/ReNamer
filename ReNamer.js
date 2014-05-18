@@ -26,11 +26,9 @@ var server = function(request, response) {
     '.js':   "text/javascript"
   };
 
-  if (url.pathname == "/files")
+  if (url.pathname == "/api/files")
   {
     api.files(config,function(files){
-      //console.log("files " + util.inspect(files,false,null));
-
       var headers = {};
       headers["Content-Type"] = "text/json";
       response.writeHead(200, headers);
@@ -38,7 +36,7 @@ var server = function(request, response) {
       response.end();
     },debug);
   }
-  else if (url.pathname == "/getTitle")
+  else if (url.pathname == "/api/getTitle")
   {
     api.getTitle(config,url.query,function(title){
       var headers = {};
@@ -48,7 +46,7 @@ var server = function(request, response) {
       response.end();
     },debug);
   }
-  else if (url.pathname == "/move")
+  else if (url.pathname == "/api/move")
   {
     api.move(config,url.query,function(success){
       var headers = {};
@@ -61,7 +59,7 @@ var server = function(request, response) {
       response.end();
     },debug);
   }
-  else if (url.pathname == "/erase")
+  else if (url.pathname == "/api/erase")
   {
     api.erase(config,url.query,function(success){
       var headers = {};
@@ -74,7 +72,7 @@ var server = function(request, response) {
       response.end();
     },debug);
   }
-  else if (url.pathname == "/dups")
+  else if (url.pathname == "/api/dups")
   {
     api.dups(config,function(files){
       var headers = {};
@@ -86,7 +84,7 @@ var server = function(request, response) {
   }
   else
   { 
-    // TODO no dot files
+    // TODO no dot files, only /, index.html, app, js, css, img, node_modules
     fs.exists(filename, function(exists) {
       if(!exists) {
         response.writeHead(404, {"Content-Type": "text/plain"});

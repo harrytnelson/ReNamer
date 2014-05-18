@@ -1,0 +1,20 @@
+<div>
+  Search: <input ng-model="query">
+  Sort by:
+  <select ng-model="orderProp">
+    <option value="file">Alphabetical</option>
+    <option value="date">Newest</option>
+  </select>
+
+
+  <div ng-repeat="file in files | filter:query | filter:videos | orderBy:orderProp">
+    <ul>
+      <li>{{file.file}}</li>
+      <li>{{file.type}}</li>
+      <li>{{file.show}}</li>
+      <li>{{file.season}}</li>
+      <li>{{file.episode}}</li>
+      <li>{{file.date}}</li>
+    </ul>
+  </div>
+</div>
