@@ -181,7 +181,7 @@ function getTitle(config,query,CB,debug){
           match = match[1];
           debug&&console.log(match);
 
-          pat = '.*[0-9]{2}\/(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dev)\/[0-9]{2} *';
+          pat = '.*[0-9]{2}\/(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\/[0-9]{2} *';
           //pat = '.*[0-9]{2}\/[[:mon:]]\/[0-9]{2} *';
           match=replace(debug,i++,match,X(pat,''),'');
 
