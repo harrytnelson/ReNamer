@@ -1,22 +1,64 @@
 <div id="files">
-  Search: <input ng-model="query">
-  Sort by:
-  <select ng-model="orderProp">
-    <option value="file">Alphabetical</option>
-    <option value="date">Newest</option>
-  </select>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h2 class="panel-title">Files</h2>
+    </div>
+    <div class="panel-body">
+      <form class="form-inline form-horizontal" role="form">
+        <label class="control-label" for="query">Search</label>
+        <input type="text" id="query" class="form-control" ng-model="query" />
+        <label class="control-label" for="orderProp">Sort by</label>
+        <select class="form-control" ng-model="orderProp">
+          <option value="file">Alphabetical</option>
+          <option value="date">Newest</option>
+        </select>
+        <label><input type="checkbox" ng_model="showAll"/> Show All</label>
+      </form>
+    </br>
 
-
-  <div ng-repeat="file in files | filter:query | orderBy:orderProp" ng-show="file.type=='video'">
-      <span>Path: {{file.file}}</span><br/>
-      <span>Type: {{file.type}}</span><br/>
-      <span>Date: {{file.date | date:'MMM d, y h:mm:ss a'}}</span><br/>
-      Show: <input type="text" ng-model="file.show"/>
-      Season: <input type="number" ng-model="file.season"/>
-      Episode: <input type="number" ng-model="file.episode"/></br>
-      Title: <input type="text" ng-model="file.title" ng-controller="rnrGetTitleCtrl"/>
-      <!--<br/> {{file.show}} {{file.season}} {{file.episode}}
-      <br/> {{file}}-->
-      <hr/>
+    <div class="panel panel-primary" ng-repeat="file in files | videos:showAll | filter:query | orderBy:orderProp">
+      <div class="panel-heading">
+        <h3 class="panel-title">{{buildFileName(file)}}</h3>
+      </div>
+      <div class="panel-body">
+        <form class="form-horizontal" role="form">
+          <div class="form-group">
+            <label class="col-sm-2 control-label">file</label>
+            <div class="col-sm-10">
+              <p class="form-control-static">{{file.file}}</p>
+            </div>
+            <label class="col-sm-2 control-label">Type</label>
+            <div class="col-sm-10">
+              <p class="form-control-static">{{file.type}}</p>
+            </div>
+            <label class="col-sm-2 control-label">Date </label>
+            <div class="col-sm-10">
+              <p class="form-control-static">{{file.date | date:'MMM d, y h:mm:ss a'}}</p>
+            </div>
+            <label class="col-sm-2 control-label" for="show">Show</label>
+            <div class="col-sm-10">
+              <input class="form-control" id="show"    type="text"   ng-model="file.show"/>
+            </div>
+            <label class="col-sm-2 control-label" for="season">Season</label>
+            <div class="col-sm-10">
+              <input class="form-control" id="season"  type="number" ng-model="file.season"/>
+            </div>
+            <label class="col-sm-2 control-label" for="episode">Episode</label>
+            <div class="col-sm-10">
+              <input class="form-control" id="episode" type="number" ng-model="file.episode"/></br>
+            </div>
+          </div>
+            <label class="col-sm-2 control-label" for="title">Title</label>
+            <div class="col-sm-10 input-group">
+              <input class="form-control" id="title" type="text" ng-model="file.title" ng-controller="rnrGetTitleCtrl"/>
+              <span class="input-group-btn">
+                <button class="btn btn-default">Rename</button>
+              </span>
+            </div>
+        </form>
+        <!--<br/> {{file.show}} {{file.season}} {{file.episode}}
+        <br/> {{file}}-->
+      </div>
+    </div>
   </div>
 </div>

@@ -8,8 +8,20 @@ filesControllers
         $http
           .get('api/files')
           .success(function(data){$scope.files=data;});
-    $scope.orderProp = 'file';
-    //$scope.getTitle = function(show,season,episode){};
+        $scope.orderProp = 'file';
+        //$scope.getTitle = function($scope){
+        //    var url = 'api/getTitle?show='+$scope.file.show+'&season='+$scope.file.season+'&episode='+$scope.file.episode;
+        //    //console.log('url : ' + url);
+        //    $http
+        //      .get(url)
+        //      .success(function(data){$scope.file.title=data.title;});
+        //};
+        $scope.showAll = false;
+        $scope.buildFileName = function($scope){
+          if ( $scope.type != "video" )
+            return $scope.file
+          return "%s - S%02dE%02d - %s%s".sprintf($scope.show,$scope.season,$scope.episode,$scope.title,$scope.extension);
+        };
   }])
   .controller('rnrGetTitleCtrl',
     [ '$scope','$http',
@@ -21,6 +33,16 @@ filesControllers
           .get(url)
           .success(function(data){$scope.file.title=data.title;});
   }])
+  .filter("videos",function() {
+    return function(files,showAll){
+      var result = [];
+      angular.forEach(files, function(file){
+        if (file.type == "video" || showAll == true )
+          result.push(file);
+      });
+      return result;
+    };
+  })
   //.directive("rnrGetTitle",
   //  [ '$http',
   //    function($http){
