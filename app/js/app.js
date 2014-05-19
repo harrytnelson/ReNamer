@@ -1,14 +1,11 @@
-var ReNamerApp = angular.module('ReNamerApp', ['ngRoute','filesControllers','filesFilters']);
+var ReNamerApp = angular.module('ReNamerApp', ['ngRoute','rnrFilesControllers']);
 ReNamerApp.config(
   [ '$routeProvider',
     function($routeProvider) {
       $routeProvider
         .when('/files',
           { templateUrl: 'app/partials/files.html',
-            controller: 'filesCtrl'})
-        .when('/getTitle/:show/:season/:episode',
-          { templateUrl: 'app/partials/getTitle.html',
-            controller: 'getTitleCtrl'})
+            controller: 'rnrFilesCtrl'})
         .otherwise({redirectTo: '/files'});
 }]);
 

@@ -64,7 +64,7 @@ function files(config,CB,debug){
   while (dir.length) {
     var file = dir.pop();
     var stat = fs.statSync(path.join(incoming,file));
-    var fileObj = {"file":file,"date":stat.mtime};
+    var fileObj = {"file":file,"date":stat.mtime,"title":""};
     if(stat.isDirectory()){
       var indir = fs.readdirSync(path.join(incoming,file));
       while (indir.length)
@@ -128,8 +128,8 @@ function files(config,CB,debug){
 
     fileObj.type="video";
     fileObj.show=show;
-    fileObj.season=season;
-    fileObj.episode=episode;
+    fileObj.season=parseInt(season);
+    fileObj.episode=parseInt(episode);
     fileObj.extension=ext;
     files.push(fileObj);
 

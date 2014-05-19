@@ -4,23 +4,12 @@
     <script src="node_modules/d3/d3.min.js"></script>
     <script src="node_modules/angular/lib/angular.min.js"></script>
     <script src="node_modules/angular-route/angular-route.min.js"></script>
+    <script src="node_modules/angular-resource/lib/angular-resource.js"></script>
     <script src="app/js/app.js"></script>
     <script src="app/js/controllers.js"></script>
-    <script src="app/js/filters.js"></script>
-    <script>
-      $(document).ready(function(){
-      //  $.ajax({url: '/files'}).done(function(data) {
-      //    for(var entry in data)
-      //    {
-      //    }
-      //    $('#incoming').text(
-      //util.inspect(data,false,null) + JSON.stringify(data)))});
-      });
-    </script>
   </head>
   <body>
     <H1>ReNamer</H1>
-    <div id="incoming" ng-view></div>
-    <div id="dups"></div>
+    <div ng-view></div>
   </body>
 </html>

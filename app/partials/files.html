@@ -1,4 +1,4 @@
-<div>
+<div id="files">
   Search: <input ng-model="query">
   Sort by:
   <select ng-model="orderProp">
@@ -7,14 +7,16 @@
   </select>
 
 
-  <div ng-repeat="file in files | filter:query | filter:videos | orderBy:orderProp">
-    <ul>
-      <li>{{file.file}}</li>
-      <li>{{file.type}}</li>
-      <li>{{file.show}}</li>
-      <li>{{file.season}}</li>
-      <li>{{file.episode}}</li>
-      <li>{{file.date}}</li>
-    </ul>
+  <div ng-repeat="file in files | filter:query | orderBy:orderProp" ng-show="file.type=='video'">
+      <span>Path: {{file.file}}</span><br/>
+      <span>Type: {{file.type}}</span><br/>
+      <span>Date: {{file.date}}</span><br/>
+      Show: <input type="text" ng-model="file.show"/>
+      Season: <input type="number" ng-model="file.season"/>
+      Episode: <input type="number" ng-model="file.episode"/></br>
+      Title: <input type="text" ng-model="file.title" ng-controller="rnrGetTitleCtrl"/>
+      <!--<br/> {{file.show}} {{file.season}} {{file.episode}}
+      <br/> {{file}}-->
+      <hr/>
   </div>
 </div>

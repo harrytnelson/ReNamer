@@ -1,21 +1,53 @@
 
-var filesControllers = angular.module('filesControllers',[]);
+var filesControllers = angular.module('rnrFilesControllers',[]);
 
 filesControllers
-  .controller('filesCtrl', 
+  .controller('rnrFilesCtrl', 
     [ '$scope','$http',
       function ($scope,$http) {
         $http
           .get('api/files')
           .success(function(data){$scope.files=data;});
-    $scope.orderProp='file';
-  }]);
+    $scope.orderProp = 'file';
+    //$scope.getTitle = function(show,season,episode){};
+  }])
+  .controller('rnrGetTitleCtrl',
+    [ '$scope','$http',
+      function ($scope,$http) {
+        var url = 'api/getTitle?show='+$scope.file.show+'&season='+$scope.file.season+'&episode='+$scope.file.episode;
+        //console.log('url : ' + url);
 
-filesControllers
-  .controller('getTitleCtrl',
-    [ '$scope','$http','$routeParams',
-      function ($scope,$http,$routeParams) {
         $http
-          .get('api/getTitle?show='+$routeParams.show+'&season='+$routeParams.season+'&episode='+$routeParams.episode)
-          .success(function(data){$scope.data=data;});
-  }]);
+          .get(url)
+          .success(function(data){$scope.file.title=data.title;});
+  }])
+  //.directive("rnrGetTitle",
+  //  [ '$http',
+  //    function($http){
+  //      function link(scope, element, attrs) {
+  //        var show, season, episode;
+  //        function update() {
+  //          $http
+  //            .get('api/getTitle?show='+show
+  //                             +'&season='+season
+  //                             +'&episode='+episode)
+  //            .success(function(data){scope.title=data.title;})
+  //            .error(function(){scope.title='';});
+  //        };
+
+  //        scope.$watch(attrs.rnrGetTitle,
+  //          function(value) {
+  //            show = value.show;
+  //            season = value.season;
+  //            episode = value.episode;
+  //            update();
+  //        });
+  //      }
+
+  //      return {
+  //        transclude: true,
+  //        link: link
+  //      };
+  //}])
+
+  ;
