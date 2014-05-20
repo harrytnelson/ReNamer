@@ -26,3 +26,4 @@ node_modules
 
 sample/tv/*
 .htpasswd
+.DS_Store
