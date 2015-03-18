@@ -1,4 +1,4 @@
-var ReNamerApp = angular.module('ReNamerApp', ['ngRoute','rnrFilesControllers']);
+var ReNamerApp = angular.module('ReNamerApp', ['ngRoute','rnrFilesControllers','ui.bootstrap']);
 ReNamerApp.config(
   [ '$routeProvider',
     function($routeProvider) {

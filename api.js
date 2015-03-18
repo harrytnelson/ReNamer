@@ -201,12 +201,19 @@ function getTitle(config,query,CB,debug){
   }
 }
 
-function move(config,query,CB,debug){CB(true);}
-function erase(config,query,CB,debug){CB(true);}
-function dups(config,CB,debug){CB( [[{"file":"file 1.mkv","size":"1234"},
-                                     {"file":"file 1.mpg","size":"1234"}],
-                                    [{"file":"file 2.avi","size":"1234"},
-                                     {"file":"file 3.mp4","size":"1234"}]]);}
+function move(config,query,CB,debug) {
+  CB(true);
+}
+
+function erase(config,query,CB,debug) {
+  CB(true);
+}
+
+function dups(config,CB,debug) {
+  CB( [[{"file":"file 1.mkv","size":"1234"},
+        {"file":"file 1.mpg","size":"1234"}],
+       [{"file":"file 2.avi","size":"1234"},
+        {"file":"file 3.mp4","size":"1234"}]]);}
 
 module.exports = {
   files: files,

@@ -5,6 +5,7 @@
     <script src="node_modules/d3/d3.min.js"></script>
     <script src="node_modules/angular/lib/angular.min.js"></script>
     <script src="node_modules/angular-route/angular-route.min.js"></script>
+    <script src="app/js/ui-bootstrap-tpls-0.11.0.js"></script>
     <!--<script src="node_modules/angular-resource/lib/angular-resource.js"></script>-->
     <script src="String.js"></script>
     <script src="app/js/app.js"></script>
@@ -14,8 +15,16 @@
   </head>
   <body>
     <div class="container" role="main">
-    <H1>ReNamer</H1>
-    <div ng-view></div>
+      <H1>ReNamer</H1>
+<!--      <div ng-controller="ModalDemoCtrl">
+        <button class="btn btn-default" ng-click="open('lg','Big Dumbasses!')">Large modal</button>
+        <button class="btn btn-default" ng-click="open('sm','Small Dumbasses!')">Small modal</button>
+      </div>
+      <div ng-controller="AlertDemoCtrl">
+        <alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)">{{alert.msg}}</alert>
+      </div>
+-->
+      <div ng-view></div>
     </div>
   </body>
 </html>
